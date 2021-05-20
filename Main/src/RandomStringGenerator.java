@@ -1,29 +1,36 @@
 import java.util.*;
 
 public class RandomStringGenerator {
-    private final Random random = new Random();
-    private final List<Integer> randomInts = new ArrayList<>();
-    private final List<String> randomString = new ArrayList<>();
+    private final Random random;
+    private final Sortable sortable;
+
+    public RandomStringGenerator(Sortable.Mode mode) {
+        random = new Random();
+        sortable = new Sortable(mode);
+    }
 
     public List<String> generateRandomString(int length, boolean upperCase) {
         for (int x = 0; x < length; x++) {
             int nextInt = random.nextInt(26) + 1;
-            randomInts.add(nextInt);
+            sortable.addInt(nextInt);
         }
         bubbleSort();
         alphabetize(upperCase);
-        return randomString;
+        return switch (sortable.getMode()) {
+            case LISTBASED -> sortable.getStringList();
+            case LINKEDLISTBASED -> sortable.getStringLinkedList();
+        };
     }
 
     private void bubbleSort() {
-        int length = randomInts.size();
+        int length = sortable.getIntListSize();
         int storageInt;
         for (int x = 0; x < length; x++) {
             for (int y = 1; y < (length - x); y++) {
-                if (randomInts.get(y - 1) > randomInts.get(y)) {
-                    storageInt = randomInts.get(y-1);
-                    randomInts.set(y-1, randomInts.get(y));
-                    randomInts.set(y, storageInt);
+                if (sortable.getInt(y - 1) > sortable.getInt(y)) {
+                    storageInt = sortable.getInt(y - 1);
+                    sortable.setInt(y - 1, sortable.getInt(y));
+                    sortable.setInt(y, storageInt);
                 }
             }
         }
@@ -31,17 +38,29 @@ public class RandomStringGenerator {
 
     private void alphabetize(boolean upperCase) {
         int conversionNumber = 96; //Start at lower case ASCII
-        if (upperCase){
+        if (upperCase) {
             conversionNumber = 64;
         }
-
-        for (int randomNumber : randomInts) {
-            randomString.add(String.valueOf((char)(randomNumber + conversionNumber)));
+        List<Integer> randomIntsList;
+        LinkedList<Integer> randomIntsLinkedList;
+        switch (sortable.getMode()) {
+            case LISTBASED -> {
+                randomIntsList = sortable.getIntList();
+                for (int randomNumber : randomIntsList) {
+                    sortable.addString(String.valueOf((char) (randomNumber + conversionNumber)));
+                }
+            }
+            case LINKEDLISTBASED -> {
+                randomIntsLinkedList = sortable.getIntLinkedList();
+                for (int randomNumber : randomIntsLinkedList) {
+                    sortable.addString(String.valueOf((char) (randomNumber + conversionNumber)));
+                }
+            }
         }
     }
 
     public static void main(String[] args) {
-        RandomStringGenerator rsg = new RandomStringGenerator();
+        RandomStringGenerator rsg = new RandomStringGenerator(Sortable.Mode.LINKEDLISTBASED);
         System.out.println(rsg.generateRandomString(1, false));
     }
 }
