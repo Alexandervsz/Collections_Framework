@@ -5,13 +5,13 @@ public class RandomStringGenerator {
     private final List<Integer> randomInts = new ArrayList<>();
     private final List<String> randomString = new ArrayList<>();
 
-    public List<String> generateRandomString(int length) {
+    public List<String> generateRandomString(int length, boolean upperCase) {
         for (int x = 0; x < length; x++) {
             int nextInt = random.nextInt(26) + 1;
             randomInts.add(nextInt);
         }
         bubbleSort();
-        alphabetize();
+        alphabetize(upperCase);
         return randomString;
     }
 
@@ -29,14 +29,19 @@ public class RandomStringGenerator {
         }
     }
 
-    private void alphabetize() {
+    private void alphabetize(boolean upperCase) {
+        int conversionNumber = 96; //Start at lower case ASCII
+        if (upperCase){
+            conversionNumber = 64;
+        }
+
         for (int randomNumber : randomInts) {
-            randomString.add(String.valueOf((char)(randomNumber + 96)));
+            randomString.add(String.valueOf((char)(randomNumber + conversionNumber)));
         }
     }
 
     public static void main(String[] args) {
         RandomStringGenerator rsg = new RandomStringGenerator();
-        System.out.println(rsg.generateRandomString(1));
+        System.out.println(rsg.generateRandomString(1, false));
     }
 }
