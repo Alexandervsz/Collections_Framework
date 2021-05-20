@@ -37,6 +37,6 @@ public class RandomStringGenerator {
 
     public static void main(String[] args) {
         RandomStringGenerator rsg = new RandomStringGenerator();
-        System.out.println(rsg.generateRandomString(40));
+        System.out.println(rsg.generateRandomString(1));
     }
 }
