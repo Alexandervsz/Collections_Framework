@@ -12,7 +12,7 @@ public class RandomStringGenerator {
     public List<String> generateRandomString(int length, boolean upperCase) {
         for (int x = 0; x < length; x++) {
             int nextInt = random.nextInt(26) + 1;
-            sortable.addIntTo(nextInt);
+            sortable.addInt(nextInt);
         }
         bubbleSort();
         alphabetize(upperCase);
@@ -23,14 +23,14 @@ public class RandomStringGenerator {
     }
 
     private void bubbleSort() {
-        int length = sortable.getRandomIntSize();
+        int length = sortable.getIntListSize();
         int storageInt;
         for (int x = 0; x < length; x++) {
             for (int y = 1; y < (length - x); y++) {
-                if (sortable.getIntAt(y - 1) > sortable.getIntAt(y)) {
-                    storageInt = sortable.getIntAt(y - 1);
-                    sortable.setIntTo(y - 1, sortable.getIntAt(y));
-                    sortable.setIntTo(y, storageInt);
+                if (sortable.getInt(y - 1) > sortable.getInt(y)) {
+                    storageInt = sortable.getInt(y - 1);
+                    sortable.setInt(y - 1, sortable.getInt(y));
+                    sortable.setInt(y, storageInt);
                 }
             }
         }
@@ -47,13 +47,13 @@ public class RandomStringGenerator {
             case LISTBASED -> {
                 randomIntsList = sortable.getRandomIntsList();
                 for (int randomNumber : randomIntsList) {
-                    sortable.addStringTo(String.valueOf((char) (randomNumber + conversionNumber)));
+                    sortable.addString(String.valueOf((char) (randomNumber + conversionNumber)));
                 }
             }
             case LINKEDLISTBASED -> {
                 randomIntsLinkedList = sortable.getRandomIntsLinkedList();
                 for (int randomNumber : randomIntsLinkedList) {
-                    sortable.addStringTo(String.valueOf((char) (randomNumber + conversionNumber)));
+                    sortable.addString(String.valueOf((char) (randomNumber + conversionNumber)));
                 }
             }
         }

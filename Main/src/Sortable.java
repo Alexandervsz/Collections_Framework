@@ -53,35 +53,35 @@ public class Sortable {
         randomStringLinkedList = new LinkedList<>();
     }
 
-    public int getIntAt(int location) {
+    public int getInt(int location) {
         return switch (mode) {
             case LISTBASED -> randomIntsList.get(location);
             case LINKEDLISTBASED -> randomIntsLinkedList.get(location);
         };
     }
 
-    public void addIntTo(int element) {
+    public void addInt(int element) {
         switch (mode) {
             case LISTBASED -> randomIntsList.add(element);
             case LINKEDLISTBASED -> randomIntsLinkedList.addLast(element);
         }
     }
 
-    public void setIntTo(int location, int element) {
+    public void setInt(int location, int element) {
         switch (mode) {
             case LISTBASED -> randomIntsList.set(location, element);
             case LINKEDLISTBASED -> randomIntsLinkedList.set(location, element);
         }
     }
 
-    public void addStringTo(String element) {
+    public void addString(String element) {
         switch (mode) {
             case LISTBASED -> randomStringList.add(element);
             case LINKEDLISTBASED -> randomStringLinkedList.addLast(element);
         }
     }
 
-    public int getRandomIntSize() {
+    public int getIntListSize() {
         return switch (mode) {
             case LISTBASED -> randomIntsList.size();
             case LINKEDLISTBASED -> randomIntsLinkedList.size();
