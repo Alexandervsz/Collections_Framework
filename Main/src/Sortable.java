@@ -60,6 +60,13 @@ public class Sortable {
         };
     }
 
+    public List<Integer> getList() {
+        return switch (mode) {
+            case LISTBASED -> intList;
+            case LINKEDLISTBASED -> intLinkedList;
+        };
+    }
+
     public void addInt(int element) {
         switch (mode) {
             case LISTBASED -> intList.add(element);

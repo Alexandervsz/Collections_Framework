@@ -41,21 +41,13 @@ public class RandomStringGenerator {
         if (upperCase) {
             conversionNumber = 64;
         }
-        List<Integer> randomIntsList;
-        LinkedList<Integer> randomIntsLinkedList;
-        switch (sortable.getMode()) {
-            case LISTBASED -> {
-                randomIntsList = sortable.getIntList();
-                for (int randomNumber : randomIntsList) {
-                    sortable.addString(String.valueOf((char) (randomNumber + conversionNumber)));
-                }
-            }
-            case LINKEDLISTBASED -> {
-                randomIntsLinkedList = sortable.getIntLinkedList();
-                for (int randomNumber : randomIntsLinkedList) {
-                    sortable.addString(String.valueOf((char) (randomNumber + conversionNumber)));
-                }
-            }
+        convertListToAlpha(conversionNumber);
+
+    }
+
+    private void convertListToAlpha(int conversionNumber){
+        for (int randomNumber: sortable.getList()){
+            sortable.addString(String.valueOf((char) (randomNumber + conversionNumber)));
         }
     }
 
