@@ -8,10 +8,10 @@ public class Sortable {
         LINKEDLISTBASED
     }
 
-    private List<Integer> randomIntsList;
-    private List<String> randomStringList;
-    private LinkedList<Integer> randomIntsLinkedList;
-    private LinkedList<String> randomStringLinkedList;
+    private List<Integer> intList;
+    private List<String> stringList;
+    private LinkedList<Integer> intLinkedList;
+    private LinkedList<String> stringLinkedList;
     private final Mode mode;
 
     public Sortable(Mode mode) {
@@ -26,65 +26,65 @@ public class Sortable {
         return mode;
     }
 
-    public List<Integer> getRandomIntsList() {
-        return randomIntsList;
+    public List<Integer> getIntList() {
+        return intList;
     }
 
-    public LinkedList<Integer> getRandomIntsLinkedList() {
-        return randomIntsLinkedList;
+    public LinkedList<Integer> getIntLinkedList() {
+        return intLinkedList;
     }
 
 
-    public List<String> getRandomStringList() {
-        return randomStringList;
+    public List<String> getStringList() {
+        return stringList;
     }
 
-    public LinkedList<String> getRandomStringLinkedList() {
-        return randomStringLinkedList;
+    public LinkedList<String> getStringLinkedList() {
+        return stringLinkedList;
     }
 
     private void initialiseListBased() {
-        randomIntsList = new ArrayList<>();
-        randomStringList = new ArrayList<>();
+        intList = new ArrayList<>();
+        stringList = new ArrayList<>();
     }
 
     private void initialiseLinkedListBased() {
-        randomIntsLinkedList = new LinkedList<>();
-        randomStringLinkedList = new LinkedList<>();
+        intLinkedList = new LinkedList<>();
+        stringLinkedList = new LinkedList<>();
     }
 
     public int getInt(int location) {
         return switch (mode) {
-            case LISTBASED -> randomIntsList.get(location);
-            case LINKEDLISTBASED -> randomIntsLinkedList.get(location);
+            case LISTBASED -> intList.get(location);
+            case LINKEDLISTBASED -> intLinkedList.get(location);
         };
     }
 
     public void addInt(int element) {
         switch (mode) {
-            case LISTBASED -> randomIntsList.add(element);
-            case LINKEDLISTBASED -> randomIntsLinkedList.addLast(element);
+            case LISTBASED -> intList.add(element);
+            case LINKEDLISTBASED -> intLinkedList.addLast(element);
         }
     }
 
     public void setInt(int location, int element) {
         switch (mode) {
-            case LISTBASED -> randomIntsList.set(location, element);
-            case LINKEDLISTBASED -> randomIntsLinkedList.set(location, element);
+            case LISTBASED -> intList.set(location, element);
+            case LINKEDLISTBASED -> intLinkedList.set(location, element);
         }
     }
 
     public void addString(String element) {
         switch (mode) {
-            case LISTBASED -> randomStringList.add(element);
-            case LINKEDLISTBASED -> randomStringLinkedList.addLast(element);
+            case LISTBASED -> stringList.add(element);
+            case LINKEDLISTBASED -> stringLinkedList.addLast(element);
         }
     }
 
     public int getIntListSize() {
         return switch (mode) {
-            case LISTBASED -> randomIntsList.size();
-            case LINKEDLISTBASED -> randomIntsLinkedList.size();
+            case LISTBASED -> intList.size();
+            case LINKEDLISTBASED -> intLinkedList.size();
         };
     }
 }

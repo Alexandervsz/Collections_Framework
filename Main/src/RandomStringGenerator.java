@@ -17,8 +17,8 @@ public class RandomStringGenerator {
         bubbleSort();
         alphabetize(upperCase);
         return switch (sortable.getMode()) {
-            case LISTBASED -> sortable.getRandomStringList();
-            case LINKEDLISTBASED -> sortable.getRandomStringLinkedList();
+            case LISTBASED -> sortable.getStringList();
+            case LINKEDLISTBASED -> sortable.getStringLinkedList();
         };
     }
 
@@ -45,13 +45,13 @@ public class RandomStringGenerator {
         LinkedList<Integer> randomIntsLinkedList;
         switch (sortable.getMode()) {
             case LISTBASED -> {
-                randomIntsList = sortable.getRandomIntsList();
+                randomIntsList = sortable.getIntList();
                 for (int randomNumber : randomIntsList) {
                     sortable.addString(String.valueOf((char) (randomNumber + conversionNumber)));
                 }
             }
             case LINKEDLISTBASED -> {
-                randomIntsLinkedList = sortable.getRandomIntsLinkedList();
+                randomIntsLinkedList = sortable.getIntLinkedList();
                 for (int randomNumber : randomIntsLinkedList) {
                     sortable.addString(String.valueOf((char) (randomNumber + conversionNumber)));
                 }
