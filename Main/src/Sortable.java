@@ -7,10 +7,20 @@ public class Sortable {
         LISTBASED,
         LINKEDLISTBASED
     }
+
     private List<Integer> randomIntsList;
     private List<String> randomStringList;
     private LinkedList<Integer> randomIntsLinkedList;
     private LinkedList<String> randomStringLinkedList;
+    private final Mode mode;
+
+    public Sortable(Mode mode) {
+        this.mode = mode;
+        switch (mode) {
+            case LISTBASED -> initialiseListBased();
+            case LINKEDLISTBASED -> initialiseLinkedListBased();
+        }
+    }
 
     public Mode getMode() {
         return mode;
@@ -24,7 +34,6 @@ public class Sortable {
         return randomIntsLinkedList;
     }
 
-    private final Mode mode;
 
     public List<String> getRandomStringList() {
         return randomStringList;
@@ -34,57 +43,48 @@ public class Sortable {
         return randomStringLinkedList;
     }
 
-    public Sortable(Mode mode){
-        this.mode = mode;
-        switch (mode){
-            case LISTBASED -> initialiseListBased();
-            case LINKEDLISTBASED -> initialiseLinkedListBased();
-        }
+    private void initialiseListBased() {
+        randomIntsList = new ArrayList<>();
+        randomStringList = new ArrayList<>();
     }
 
-    public void initialiseListBased(){
-         randomIntsList = new ArrayList<>();
-         randomStringList = new ArrayList<>();
-    }
-
-    public void initialiseLinkedListBased(){
+    private void initialiseLinkedListBased() {
         randomIntsLinkedList = new LinkedList<>();
         randomStringLinkedList = new LinkedList<>();
     }
 
-    public int getIntAt(int location){
+    public int getIntAt(int location) {
         return switch (mode) {
             case LISTBASED -> randomIntsList.get(location);
             case LINKEDLISTBASED -> randomIntsLinkedList.get(location);
         };
     }
 
-    public void addIntTo(int element){
-        switch (mode){
+    public void addIntTo(int element) {
+        switch (mode) {
             case LISTBASED -> randomIntsList.add(element);
             case LINKEDLISTBASED -> randomIntsLinkedList.addLast(element);
         }
     }
 
-    public void setIntTo(int location, int element){
-        switch (mode){
+    public void setIntTo(int location, int element) {
+        switch (mode) {
             case LISTBASED -> randomIntsList.set(location, element);
             case LINKEDLISTBASED -> randomIntsLinkedList.set(location, element);
         }
     }
 
-    public void addStringTo(String element){
-        switch (mode){
+    public void addStringTo(String element) {
+        switch (mode) {
             case LISTBASED -> randomStringList.add(element);
             case LINKEDLISTBASED -> randomStringLinkedList.addLast(element);
         }
     }
 
-    public int getRandomIntSize(){
+    public int getRandomIntSize() {
         return switch (mode) {
             case LISTBASED -> randomIntsList.size();
             case LINKEDLISTBASED -> randomIntsLinkedList.size();
         };
     }
-
 }
