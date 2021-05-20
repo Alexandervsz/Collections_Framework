@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class RandomStringGenerator {
-    Random random;
-    Sortable sortable;
+    private final Random random;
+    private final Sortable sortable;
 
     public RandomStringGenerator(Sortable.Mode mode) {
         random = new Random();
