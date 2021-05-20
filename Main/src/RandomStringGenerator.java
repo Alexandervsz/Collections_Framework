@@ -7,7 +7,8 @@ public class RandomStringGenerator {
 
     public List<String> generateRandomString(int length) {
         for (int x = 0; x < length; x++) {
-            randomInts.add(random.nextInt(26) + 1);
+            int nextInt = random.nextInt(26) + 1;
+            randomInts.add(nextInt);
         }
         bubbleSort();
         alphabetize();
@@ -20,8 +21,8 @@ public class RandomStringGenerator {
         for (int x = 0; x < length; x++) {
             for (int y = 1; y < (length - x); y++) {
                 if (randomInts.get(y - 1) > randomInts.get(y)) {
-                    storageInt = randomInts.get(y - 1);
-                    randomInts.set(y - 1, y);
+                    storageInt = randomInts.get(y-1);
+                    randomInts.set(y-1, randomInts.get(y));
                     randomInts.set(y, storageInt);
                 }
             }
@@ -30,12 +31,12 @@ public class RandomStringGenerator {
 
     private void alphabetize() {
         for (int randomNumber : randomInts) {
-            randomString.add(String.valueOf((char) (randomNumber + 96)));
+            randomString.add(String.valueOf((char)(randomNumber + 96)));
         }
     }
 
     public static void main(String[] args) {
         RandomStringGenerator rsg = new RandomStringGenerator();
-        System.out.println(rsg.generateRandomString(1));
+        System.out.println(rsg.generateRandomString(40));
     }
 }
